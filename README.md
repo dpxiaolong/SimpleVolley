@@ -27,6 +27,7 @@
 <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission-sdk-23>
 
 //使用演示，只需要简单五步即可完成。
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
