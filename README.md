@@ -9,7 +9,8 @@
 支持大文件下载，断点续传。（注意运行时权限处理—存储权限）
 
 内部已实现多线程同时进行网络请求。
-
+流程图如下：
+![image](https://github.com/dpxiaolong/SimpleVolley/blob/master/flow.png)
 
 //使用演示，只需要简单五步即可完成。
 public class MainActivity extends AppCompatActivity {
