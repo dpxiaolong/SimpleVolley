@@ -13,6 +13,10 @@
 内部已实现多线程同时进行网络请求。
 流程图如下：
 ![image](https://github.com/dpxiaolong/SimpleVolley/blob/master/flow.png)
+//使用前  记得先添加网络权限和存储权限
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission-sdk-23>
 
 //使用演示，只需要简单五步即可完成。
 public class MainActivity extends AppCompatActivity {
