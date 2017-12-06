@@ -115,7 +115,7 @@ public class RequestQueue {
 
         Log.i(TAG, "addRequest start download");
         DownloadManager.Request dlrequest = new DownloadManager.Request(Uri.parse(request.getmUri()));
-        //指定下载路径和下载文件名
+
         if (request.getmPath() == null || request.getmPath().equals("")) {
             filepath = Environment.getRootDirectory().toString();
         } else {
@@ -130,6 +130,7 @@ public class RequestQueue {
         } else {
             fileName = fileNameTemp;
         }
+        //指定下载路径和下载文件名
         dlrequest.setDestinationInExternalPublicDir(filepath, fileName);
         //获取下载管理器
         DownloadManager downloadManager = (DownloadManager) activity.getSystemService(Context.DOWNLOAD_SERVICE);

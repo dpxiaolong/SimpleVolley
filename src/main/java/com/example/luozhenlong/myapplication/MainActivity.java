@@ -136,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
                     Log.i(TAG,"addRequest fileDownloadRequest");
                     mQueue.addRequest(fileDownloadRequest,this);
                 } else {
-
                 }
                 return;
             }
