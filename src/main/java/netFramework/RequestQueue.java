@@ -1,13 +1,24 @@
 package netFramework;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.DownloadManager;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
+import java.io.File;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import netFramework.HttpStack.HttpStack;
 import netFramework.HttpStack.HttpStackFactory;
+import netFramework.Request.FileDownloadRequest;
 import netFramework.Request.Request;
 
 /**
@@ -47,6 +58,7 @@ public class RequestQueue {
      */
     private HttpStack mHttpStack;
 
+
     /**
      * @param coreNums 线程核心数
      */
@@ -60,7 +72,7 @@ public class RequestQueue {
      */
     private final void startNetworkExecutors() {
         mDispatchers = new NetworkExecutor[mDispatcherNums];
-        Log.i(TAG,"mDispatcherNums "+mDispatcherNums);
+        Log.i(TAG, "mDispatcherNums " + mDispatcherNums);
         for (int i = 0; i < mDispatcherNums; i++) {
             mDispatchers[i] = new NetworkExecutor(mRequestQueue, mHttpStack);
             mDispatchers[i].start();
@@ -95,6 +107,41 @@ public class RequestQueue {
         } else {
             Log.i(TAG, "请求队列中已经含有");
         }
+    }
+
+    public void addRequest(final FileDownloadRequest request, final Activity activity) {
+        String filepath = null;//文件存储路径
+        String fileName = null;//文件存储的名字
+
+        Log.i(TAG, "addRequest start download");
+        DownloadManager.Request dlrequest = new DownloadManager.Request(Uri.parse(request.getmUri()));
+        //指定下载路径和下载文件名
+        if (request.getmPath() == null || request.getmPath().equals("")) {
+            filepath = Environment.getRootDirectory().toString();
+        } else {
+            filepath = request.getmPath();
+        }
+        String pathtemp = request.getmUri();
+        String[] split = pathtemp.split("/");
+        String fileNameTemp = split[split.length - 1];
+        Log.i(TAG, "fileNameTemp" + fileNameTemp);
+        if (request.getmFileName() == null || request.getmFileName().equals("")) {
+            fileName = fileNameTemp;
+        } else {
+            fileName = fileNameTemp;
+        }
+        dlrequest.setDestinationInExternalPublicDir(filepath, fileName);
+        //获取下载管理器
+        DownloadManager downloadManager = (DownloadManager) activity.getSystemService(Context.DOWNLOAD_SERVICE);
+        //将下载任务加入下载队列，否则不会进行下载
+        downloadManager.enqueue(dlrequest);
+
+    }
+
+    public boolean MakeFilePath() {
+        String path = Environment.getDownloadCacheDirectory().toString();
+        File folder = new File(path);
+        return (folder.exists() && folder.isDirectory()) ? true : folder.mkdirs();
     }
 
     public void clear() {

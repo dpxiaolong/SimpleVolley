@@ -3,6 +3,8 @@ package netFramework.Request;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.support.annotation.TransitionRes;
+import android.util.Log;
 
 import netFramework.Response.Response;
 
@@ -11,6 +13,7 @@ import netFramework.Response.Response;
  */
 
 public class BitmapRequest extends Request {
+    private static final String TAG = "BitmapRequest";
     /**
      * @param method
      * @param url
