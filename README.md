@@ -1,6 +1,9 @@
 # SimpleVolley
 
-请求框架模仿自volley，参考了网上的其它网络框架，稳定性还未测试；
+一 简介：
+请求框架模仿自volley，参考了网上的其它网络框架，内部已实现多线程同时进行网络请求。
+框架处理还不足，仅供学习借鉴。
+二:支持功能：
 
 支持返回String串的请求
 
@@ -10,9 +13,12 @@
 
 支持大文件下载断点续传。（注意运行时权限处理—存储权限）
 
-内部已实现多线程同时进行网络请求。
+三：流程说明
 流程图如下：
 ![image](https://github.com/dpxiaolong/SimpleVolley/blob/master/flow.png)
+
+四：使用指南
+
 //使用前  记得先添加网络权限和存储权限
 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
