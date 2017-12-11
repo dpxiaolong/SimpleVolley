@@ -48,22 +48,22 @@ public class MainActivity extends AppCompatActivity {
         mResultTv = (TextView) findViewById(R.id.result_tv);
         iv_test = (ImageView) findViewById(R.id.iv_test);
         // 1、构建请求队列
-        checkStoragePermission();
+//        checkStoragePermission();
         mQueue = SimpleVolley.newRequestQueue();
 
 
 
 
 
-//        BitmapRequest bitmapRequest = new BitmapRequest(Request.HttpMethod.GET,
-//                "https://img10.360buyimg.com/imgzone/jfs/t12694/327/1472644169/354901/1fedb87/5a20cd3bNecd9ddfa.jpg", new Request.RequestListener<Bitmap>() {
-//            @Override
-//            public void onComplete(int stCode, Bitmap response, String errMsg) {
-//                Log.i(TAG,"onComplete BITMAP");
-//                iv_test.setImageBitmap(response);
-//            }
-//        });
-//        mQueue.addRequest(bitmapRequest);
+        BitmapRequest bitmapRequest = new BitmapRequest(Request.HttpMethod.GET,
+                "https://img10.360buyimg.com/imgzone/jfs/t12694/327/1472644169/354901/1fedb87/5a20cd3bNecd9ddfa.jpg", new Request.RequestListener<Bitmap>() {
+            @Override
+            public void onComplete(int stCode, Bitmap response, String errMsg) {
+                Log.i(TAG,"onComplete BITMAP");
+                iv_test.setImageBitmap(response);
+            }
+        });
+        mQueue.addRequest(bitmapRequest);
 
 
 

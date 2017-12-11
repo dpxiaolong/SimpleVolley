@@ -1,5 +1,7 @@
 package netFramework.Request;
 
+import android.util.Log;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -140,6 +142,7 @@ public abstract class Request<T> implements Comparable {
             int stCode = response != null ? response.getStatusCode() : -1;
             String msg = response != null ? response.getMessage() : "unkown error";
             mRequestListener.onComplete(stCode, result, msg);
+
         }
     }
     public String getUrl() {
